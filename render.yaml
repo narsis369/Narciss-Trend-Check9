@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: narciss-trend-check
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URI
+        value: sqlite:///site.db
+      - key: MAIL_SERVER
+        value: smtp.example.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USE_TLS
+        value: True
+      - key: MAIL_USERNAME
+        value: your_email@example.com
+      - key: MAIL_PASSWORD
+        value: your_email_password
+      - key: PYTHON_VERSION
+        value: 3.9.0
